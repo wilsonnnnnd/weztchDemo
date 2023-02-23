@@ -1,0 +1,118 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Inventory $inventory
+ */
+?>
+<style>
+    error-message{
+        color:red !important;
+    }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .red {
+        color: red;
+        font-style: normal;
+        font-size: 120%;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .legend {
+        font-style: normal;
+        font-size: 100%;
+        display: inline-block;
+        white-space: nowrap;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fas fa-cubes"></i>Inventory Category</h3>
+    </div>
+</div>
+
+
+<div class="row">
+    <ol class="breadcrumb" style="width: 70rem;">
+        <li><i class="fas fa-cubes"></i><a <?php echo $this->Html->link('Inventory', array('controller' => 'Inventories', 'action' => 'index'), array('escape' => false)); ?></a></li>
+        <li><i class="far fa-edit"></i>Edit Inventory Category</li>
+        <li><i class="fa fa-id-card-o"></i><?= h($inventory->brand." ".$inventory->name." ".$inventory->type) ?></li>
+    </ol>
+    <div class="card" style="width: 70rem;">
+        <div class="card-body">
+            <h2 class="card-title">Edit Inventory Category</h2>
+            <div class="card-text">
+                <?= $this->Form->postLink(
+                    __('Delete Inventory Category'),
+                    ['action' => 'delete', $inventory->id],
+                    ['confirm' => __('Are you sure you want to delete the Inventory Category: {0}?', $inventory->brand." ".$inventory->name." ".$inventory->type), 'class' => 'btn btn-danger']
+                ) ?>
+                <div class="pull-right"><div class="red">* </div>&nbsp;<div class = legend>Indicates mandatory inputs</div></div><br><p><br></p>
+                <?= $this->Form->create($inventory) ?>
+                <div class="form-group">
+                    <label for="name">Name <div class = red>*</div></label>
+                    <?php echo $this->Form->control('name', ['required' => true, 'maxlength' => 100, 'placeholder' => 'Maximum length: 100', 'label' => false, 'class' => 'form-control']); ?>
+                </div><br>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="type">Type</label>
+                        <?php echo $this->Form->control('type', ['required' => false, 'maxlength' => 50, 'placeholder' => 'Maximum length: 50', 'label' => false, 'class' => 'form-control']); ?>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="brand">Brand</label>
+                        <?php echo $this->Form->control('brand', ['required' => false, 'maxlength' => 50, 'placeholder' => 'Maximum length: 50', 'label' => false, 'class' => 'form-control']); ?>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="part_no">Part Number</label>
+                        <?php echo $this->Form->control('part_no', ['required' => false, 'maxlength' => 50, 'placeholder' => 'Maximum length: 50', 'label' => false, 'class' => 'form-control']); ?>
+                    </div>
+                    <div class="col-auto">
+                        <label for="retail_price">Retail Price</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">$</div>
+                            <?php echo $this->Form->control('retail_price', ['required' => false, 'placeholder' => 'Enter value in dollars','min'=>0, 'max'=>999999999.99,'label' => false, 'class' => 'form-control']); ?>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <?php echo $this->Form->control('description', ['required' => false, 'maxlength' => 500, 'placeholder' => 'Maximum length: 500', 'label' => false, 'class' => 'form-control']); ?>
+                </div>
+            </div>
+            <?= $this->Form->button('Submit', ['class' => 'btn btn-primary', 'id' => 'submit', 'style' => 'float:right']) ?>
+            <?= $this->Form->end() ?>
+            <?= $this->Form->button ('Cancel', ['onclick' =>'history.back ()', 'type' =>'button','class'=>'btn btn-secondary'])?>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+
+<?= $this->Html->script('choices.min.js'); ?>
+<?= $this->Html->script('bootstrap.bundle.min.js'); ?>
+
+<!--//set the submit only can submit once-->
+<script type="text/javascript">
+    $('form').submit(function() {
+        $(document).find("button[type='Submit']").prop('disabled', true);
+    });
+</script>
+<script>
+    function limit(event, value, maxLength) {
+        if (value != undefined && value.toString().length >= maxLength) {
+            event.preventDefault();
+        }
+    }
+</script>
+
