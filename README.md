@@ -86,12 +86,12 @@ https://drive.google.com/drive/u/2/folders/1y0NR49bq2crEEbBBnuSBDE7jRc_Pr797
 
 ## Authors
 
-Weimeng(Wilson) Ding
+* Weimeng(Wilson) Ding
 [@Wilson](https://github.com/wilsonnnnnd)
-Elijah Dennis
-Sebastian Peart
-Daniel Chai 
-WangLin Song
+* Elijah Dennis
+* Sebastian Peart
+* Daniel Chai 
+* WangLin Song
 
 ## Version History
 
